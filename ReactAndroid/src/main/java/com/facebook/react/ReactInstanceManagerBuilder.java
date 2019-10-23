@@ -9,6 +9,8 @@ import static com.facebook.react.modules.systeminfo.AndroidInfoHelpers.getFriend
 
 import android.app.Activity;
 import android.app.Application;
+
+import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.JSBundleLoader;
 import com.facebook.react.bridge.JSIModulePackage;
@@ -268,7 +270,7 @@ public class ReactInstanceManagerBuilder {
         mCurrentActivity,
         mDefaultHardwareBackBtnHandler,
         mJavaScriptExecutorFactory == null
-            ? new JSCExecutorFactory(appName, deviceName)
+            ? getDefaultJSExecutorFactory(appName, deviceName)
             : mJavaScriptExecutorFactory,
         (mJSBundleLoader == null && mJSBundleAssetUrl != null)
             ? JSBundleLoader.createAssetLoader(
@@ -288,5 +290,18 @@ public class ReactInstanceManagerBuilder {
         mMinTimeLeftInFrameForNonBatchedOperationMs,
         mJSIModulesPackage,
         mCustomPackagerCommandHandlers);
+  }
+
+  private JavaScriptExecutorFactory getDefaultJSExecutorFactory(String appName, String deviceName) {
+    // TODO: Hermes预研，直接使用Hermes
+    return new HermesExecutorFactory();
+    // try {
+    //   // If JSC is included, use it as normal
+    //   SoLoader.loadLibrary("jscexecutor");
+    //   return new JSCExecutorFactory(appName, deviceName);
+    // } catch (UnsatisfiedLinkError jscE) {
+    //   // Otherwise use Hermes
+    //   return new HermesExecutorFactory();
+    // }
   }
 }
