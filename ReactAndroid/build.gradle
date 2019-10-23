@@ -39,7 +39,8 @@ task createNativeDepsDirectories {
 }
 
 task downloadBoost(dependsOn: createNativeDepsDirectories, type: Download) {
-    src("https://github.com/react-native-community/boost-for-react-native/releases/download/v${BOOST_VERSION.replace("_", ".")}-0/boost_${BOOST_VERSION}.tar.gz")
+    src("http://192.168.251.128/file/boost_1_63_0.tar.gz")
+    // src("https://github.com/react-native-community/boost-for-react-native/releases/download/v${BOOST_VERSION.replace("_", ".")}-0/boost_${BOOST_VERSION}.tar.gz")
     onlyIfNewer(true)
     overwrite(false)
     dest(new File(downloadsDir, "boost_${BOOST_VERSION}.tar.gz"))
@@ -57,7 +58,8 @@ task prepareBoost(dependsOn: boostPath ? [] : [downloadBoost], type: Copy) {
 }
 
 task downloadDoubleConversion(dependsOn: createNativeDepsDirectories, type: Download) {
-    src("https://github.com/google/double-conversion/archive/v${DOUBLE_CONVERSION_VERSION}.tar.gz")
+    src("http://192.168.251.128/file/double-conversion-1.1.6.tar.gz")
+    // src("https://github.com/google/double-conversion/archive/v${DOUBLE_CONVERSION_VERSION}.tar.gz")
     onlyIfNewer(true)
     overwrite(false)
     dest(new File(downloadsDir, "double-conversion-${DOUBLE_CONVERSION_VERSION}.tar.gz"))
@@ -73,7 +75,8 @@ task prepareDoubleConversion(dependsOn: dependenciesPath ? [] : [downloadDoubleC
 }
 
 task downloadFolly(dependsOn: createNativeDepsDirectories, type: Download) {
-    src("https://github.com/facebook/folly/archive/v${FOLLY_VERSION}.tar.gz")
+    src("http://192.168.251.128/file/folly-2018.10.22.00.tar.gz")
+    // src("https://github.com/facebook/folly/archive/v${FOLLY_VERSION}.tar.gz")
     onlyIfNewer(true)
     overwrite(false)
     dest(new File(downloadsDir, "folly-${FOLLY_VERSION}.tar.gz"))
@@ -89,7 +92,8 @@ task prepareFolly(dependsOn: dependenciesPath ? [] : [downloadFolly], type: Copy
 }
 
 task downloadGlog(dependsOn: createNativeDepsDirectories, type: Download) {
-    src("https://github.com/google/glog/archive/v${GLOG_VERSION}.tar.gz")
+    src("http://192.168.251.128/file/glog-0.3.5.tar.gz")
+    // src("https://github.com/google/glog/archive/v${GLOG_VERSION}.tar.gz")
     onlyIfNewer(true)
     overwrite(false)
     dest(new File(downloadsDir, "glog-${GLOG_VERSION}.tar.gz"))
@@ -134,7 +138,8 @@ task prepareGlog(dependsOn: dependenciesPath ? [] : [downloadGlog], type: Copy) 
 }
 
 task downloadJSC(dependsOn: createNativeDepsDirectories, type: Download) {
-    src("https://registry.npmjs.org/jsc-android/-/jsc-android-${JSC_VERSION}.tgz")
+    src("http://192.168.251.128/file/jsc-android-236355.1.1.tgz")
+    // src("https://registry.npmjs.org/jsc-android/-/jsc-android-${JSC_VERSION}.tgz")
     onlyIfNewer(true)
     overwrite(false)
     dest(new File(downloadsDir, "jsc-${JSC_VERSION}.tar.gz"))
